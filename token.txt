@@ -1,2 +1,0 @@
-acess_token
-SPOTIFY_TOKEN
