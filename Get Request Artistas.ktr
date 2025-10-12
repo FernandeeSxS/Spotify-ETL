@@ -579,6 +579,11 @@
       <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>XML output</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>CSV file input</name>
@@ -627,7 +632,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
+      <xloc>48</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -662,7 +667,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1424</xloc>
+      <xloc>1360</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -701,7 +706,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
+      <xloc>48</xloc>
       <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
@@ -756,7 +761,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1232</xloc>
+      <xloc>1152</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -879,7 +884,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>880</xloc>
+      <xloc>800</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -950,7 +955,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
+      <xloc>896</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1007,7 +1012,7 @@ var JOIN_KEY = 1;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
+      <xloc>384</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1060,7 +1065,7 @@ var JOIN_KEY = 1;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>272</xloc>
       <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1108,7 +1113,7 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1024</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1164,7 +1169,7 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
+      <xloc>704</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1198,7 +1203,7 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
+      <xloc>608</xloc>
       <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1246,7 +1251,7 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1344</xloc>
+      <xloc>1264</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1288,7 +1293,7 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
+      <xloc>144</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1330,7 +1335,7 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
+      <xloc>608</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1394,7 +1399,7 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1504</xloc>
+      <xloc>1456</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1429,8 +1434,119 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
+      <xloc>240</xloc>
       <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>XML output</name>
+    <type>XMLOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <encoding>UTF-8</encoding>
+    <name_space/>
+    <xml_main_element>Rows</xml_main_element>
+    <xml_repeat_element>Row</xml_repeat_element>
+    <file>
+      <name>${Internal.Entry.Current.Directory}/data/output/dados_artistas.xml</name>
+      <extention>xml</extention>
+      <servlet_output>N</servlet_output>
+      <do_not_open_newfile_init>N</do_not_open_newfile_init>
+      <split>N</split>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <omit_null_values>N</omit_null_values>
+      <date_time_format/>
+      <add_to_result_filenames>N</add_to_result_filenames>
+      <zipped>N</zipped>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <content_type>Element</content_type>
+        <name>Nome_Artista</name>
+        <element/>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>23</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <content_type>Element</content_type>
+        <name>Seguidores_Artista</name>
+        <element/>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <content_type>Element</content_type>
+        <name>Popularidade_Artista (0 -100)</name>
+        <element/>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <content_type>Element</content_type>
+        <name>Generos_Musicais_Artista</name>
+        <element/>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <content_type>Element</content_type>
+        <name>Id_Artista</name>
+        <element/>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1360</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
