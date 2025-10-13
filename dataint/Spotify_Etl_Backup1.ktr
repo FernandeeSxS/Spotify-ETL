@@ -438,11 +438,6 @@
   </notepads>
   <order>
     <hop>
-      <from>Generate rows</from>
-      <to>Obter Token</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Obter Token</from>
       <to>JSON input 2</to>
       <enabled>Y</enabled>
@@ -452,75 +447,22 @@
       <to>Set variables</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Modified JavaScript value</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CSV file input</from>
+      <to>Modified JavaScript value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Obter Token</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
-  <step>
-    <name>Generate rows</name>
-    <type>RowGenerator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>body</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>grant_type=client_credentials</nullif>
-        <length>50</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>Authorization</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Basic MWI1NDExYTM3OTZkNDQxOTg2OTlmNjgyNWEzMjVlMDA6YzYxODUzMmFkZjQ1NDI3ZDkwODdiNzljNWMzNzlhODY=</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>Content-Type</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>application/x-www-form-urlencoded</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>JSON input 2</name>
     <type>JsonInput</type>
@@ -613,7 +555,74 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
+      <xloc>1008</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified JavaScript value</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// 1. O campo Authorization (o 'credentials' é lido do ficheiro)
+var authorization = "Basic " + credentials;
+
+// 2. O campo Body (o valor tem de ser uma string)
+var body = "grant_type=client_credentials";
+
+// 3. O campo Content-Type (usamos 'contentType' sem o hífen para ser válido em JS)
+var contentType = "application/x-www-form-urlencoded";</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>authorization</name>
+        <rename>authorization</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>body</name>
+        <rename>body</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>contentType</name>
+        <rename>contentType</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -646,12 +655,12 @@
     <trustStorePassword>Encrypted </trustStorePassword>
     <headers>
       <header>
-        <field>Authorization</field>
-        <name>Authorization</name>
+        <field>contentType</field>
+        <name>Content-Type</name>
       </header>
       <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
+        <field>authorization</field>
+        <name>authorization</name>
       </header>
     </headers>
     <parameters>
@@ -673,7 +682,47 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
+      <xloc>880</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>authorization</name>
+        <rename/>
+      </field>
+      <field>
+        <name>body</name>
+        <rename/>
+      </field>
+      <field>
+        <name>contentType</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -707,7 +756,59 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
+      <xloc>1120</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>CSV file input</name>
+    <type>CsvInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <filename>${Internal.Entry.Current.Directory}/../data/input/credentials.txt</filename>
+    <filename_field/>
+    <rownum_field/>
+    <include_filename>N</include_filename>
+    <separator>\t</separator>
+    <enclosure/>
+    <header>N</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <format>mixed</format>
+    <encoding/>
+    <fields>
+      <field>
+        <name>credentials</name>
+        <type>String</type>
+        <format/>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>88</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
