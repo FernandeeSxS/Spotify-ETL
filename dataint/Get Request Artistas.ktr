@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Get Request Playlist</name>
+    <name>Get Request Artistas</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,9 +428,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2025/10/07 11:57:59.870</created_date>
+    <created_date>2025/10/10 17:37:52.969</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2025/10/07 11:57:59.870</modified_date>
+    <modified_date>2025/10/10 17:37:52.969</modified_date>
     <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -505,87 +505,82 @@
   </connection>
   <order>
     <hop>
-      <from>Filter rows 2</from>
-      <to>Select values 3</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Get variables 2</from>
-      <to>Modified JavaScript value 4</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Group by 2</from>
-      <to>Replace in string 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON input 3 2</from>
-      <to>JSON input 4 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON input 4 2</from>
-      <to>Group by 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON input 4 2</from>
-      <to>Text file output 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Modified JavaScript value 2 2</from>
-      <to>Filter rows 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Replace in string 2</from>
-      <to>Modified JavaScript value 2 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 3</from>
-      <to>Sort rows 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 2</from>
-      <to>Table output 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Modified JavaScript value 3 2</from>
-      <to>Stream lookup</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Stream lookup</from>
-      <to>REST client 2 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>CSV file input</from>
-      <to>Modified JavaScript value 3 2</to>
+      <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modified JavaScript value 4</from>
-      <to>Select values 2 2</to>
+      <from>Group by</from>
+      <to>Select values 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 2 2</from>
-      <to>Stream lookup</to>
+      <from>JSON input</from>
+      <to>JSON input 3</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>REST client 2 2</from>
-      <to>JSON input 3 2</to>
+      <from>JSON input 3</from>
+      <to>Modified JavaScript value 3</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows 2</from>
+      <from>Modified JavaScript value</from>
+      <to>Stream lookup 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value 2</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value 3</from>
+      <to>Group by</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>REST client</from>
+      <to>JSON input</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Stream lookup 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows</from>
+      <to>Unique rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stream lookup 2</from>
+      <to>REST client</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows</from>
+      <to>Modified JavaScript value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get variables</from>
+      <to>Modified JavaScript value 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 2</from>
+      <to>Filter rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>Table output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
       <to>XML output</to>
       <enabled>Y</enabled>
     </hop>
@@ -601,13 +596,13 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}/data/input/playlist_link.txt</filename>
-    <filename_field/>
+    <filename>${Internal.Entry.Current.Directory}/../data/output/nomes_artistas.csv</filename>
+    <filename_field>${Internal.Entry.Current.Directory}/nomes_artistas</filename_field>
     <rownum_field/>
     <include_filename>N</include_filename>
-    <separator>\t</separator>
-    <enclosure/>
-    <header>N</header>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
     <buffer_size>50000</buffer_size>
     <lazy_conversion>Y</lazy_conversion>
     <add_filename_result>N</add_filename_result>
@@ -617,13 +612,13 @@
     <encoding/>
     <fields>
       <field>
-        <name>Playlist_URL</name>
+        <name>artist_name</name>
         <type>String</type>
         <format/>
         <currency>€</currency>
         <decimal>,</decimal>
         <group>.</group>
-        <length>255</length>
+        <length>23</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -637,13 +632,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>208</yloc>
+      <xloc>48</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Filter rows 2</name>
+    <name>Filter rows</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -658,21 +653,9 @@
     <compare>
       <condition>
         <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <leftvalue>cleaned_song_name</leftvalue>
-            <function>IS NOT NULL</function>
-            <rightvalue/>
-          </condition>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <leftvalue>cleaned_artists</leftvalue>
-            <function>IS NOT NULL</function>
-            <rightvalue/>
-          </condition>
-        </conditions>
+        <leftvalue>Id_Artista</leftvalue>
+        <function>IS NOT NULL</function>
+        <rightvalue/>
       </condition>
     </compare>
     <attributes/>
@@ -684,13 +667,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1136</xloc>
-      <yloc>208</yloc>
+      <xloc>1360</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Get variables 2</name>
+    <name>Get variables</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -723,13 +706,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>336</yloc>
+      <xloc>48</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Group by 2</name>
+    <name>Group by</name>
     <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
@@ -749,26 +732,23 @@
     <give_back_row>N</give_back_row>
     <group>
       <field>
-        <name>song_name</name>
+        <name>artist_name</name>
       </field>
       <field>
-        <name>popularity</name>
+        <name>artist_followers</name>
       </field>
       <field>
-        <name>duration_ms</name>
+        <name>artist_popularity</name>
       </field>
       <field>
-        <name>track_id</name>
-      </field>
-      <field>
-        <name>album_name</name>
+        <name>artist_id</name>
       </field>
     </group>
     <fields>
       <field>
-        <aggregate>cleaned_artists</aggregate>
-        <subject>artist_name</subject>
-        <type>CONCAT_STRING</type>
+        <aggregate>cleaned_genres</aggregate>
+        <subject>not_null_artist_genres</subject>
+        <type>CONCAT_COMMA</type>
         <valuefield>,</valuefield>
       </field>
     </fields>
@@ -781,16 +761,16 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
-      <yloc>208</yloc>
+      <xloc>1152</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>JSON input 3 2</name>
+    <name>JSON input</name>
     <type>JsonInput</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -815,17 +795,12 @@
       <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
-      <name>${Internal.Entry.Current.Directory}/ISI/spotify_artista.json</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
     </file>
     <fields>
       <field>
-        <name>song_name</name>
-        <path>$.tracks.items[*].track.name</path>
-        <type>String</type>
+        <name>artist_name</name>
+        <path>$.artists.items[*].name</path>
+        <type>None</type>
         <format/>
         <currency/>
         <decimal/>
@@ -836,9 +811,9 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>popularity</name>
-        <path>$.tracks.items[*].track.popularity</path>
-        <type>Integer</type>
+        <name>genres_json</name>
+        <path>$.artists.items[*].genres</path>
+        <type>None</type>
         <format/>
         <currency/>
         <decimal/>
@@ -849,9 +824,9 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>duration_ms</name>
-        <path>$.tracks.items[*].track.duration_ms</path>
-        <type>Integer</type>
+        <name>artist_followers</name>
+        <path>$.artists.items[*].followers.total</path>
+        <type>None</type>
         <format/>
         <currency/>
         <decimal/>
@@ -862,9 +837,9 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>artists</name>
-        <path>$.tracks.items[*].track.artists</path>
-        <type>String</type>
+        <name>artist_popularity</name>
+        <path>$.artists.items[*].popularity</path>
+        <type>None</type>
         <format/>
         <currency/>
         <decimal/>
@@ -875,22 +850,9 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>track_id</name>
-        <path>$.tracks.items[*].track.id</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>album_name</name>
-        <path>$.tracks.items[*].track.album.name</path>
-        <type>String</type>
+        <name>artist_id</name>
+        <path>$.artists.items[*].id</path>
+        <type>None</type>
         <format/>
         <currency/>
         <decimal/>
@@ -922,16 +884,16 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>208</yloc>
+      <xloc>800</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>JSON input 4 2</name>
+    <name>JSON input 3</name>
     <type>JsonInput</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -959,8 +921,8 @@
     </file>
     <fields>
       <field>
-        <name>artist_name</name>
-        <path>$[*].name</path>
+        <name>artist_genres</name>
+        <path>$.[*]</path>
         <type>None</type>
         <format/>
         <currency/>
@@ -975,7 +937,7 @@
     <limit>0</limit>
     <IsInFields>Y</IsInFields>
     <IsAFile>N</IsAFile>
-    <valueField>artists</valueField>
+    <valueField>genres_json</valueField>
     <shortFileFieldName/>
     <pathFieldName/>
     <hiddenFieldName/>
@@ -993,13 +955,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
-      <yloc>208</yloc>
+      <xloc>896</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Modified JavaScript value 2 2</name>
+    <name>Modified JavaScript value</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -1015,129 +977,18 @@
       <jsScript>
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>// Função para formatar duração de milissegundos para MM:SS
-function formatDuration(ms) {
-    if (!ms || isNaN(ms)) {
-        return "00:00"; // Caso duration_ms seja nulo ou inválido
-    }
-    var totalSeconds = Math.floor(ms / 1000);
-    var minutes = Math.floor(totalSeconds / 60);
-    var seconds = totalSeconds % 60;
-    return minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
-}
+        <jsScript_script>// Obtém o nome do artista do campo de entrada
+var nome_artista = artist_name; 
 
-// Limpar e processar os dados
-var cleaned_song_name = song_name_regex ? song_name_regex.trim() : "Unknown Song";
-var cleaned_album_name = album_name ? album_name.trim() : "Unknown Album";
-var cleaned_duration = formatDuration(duration_ms); // Formatar duração
-var cleaned_popularity = popularity !== null &amp;&amp; !isNaN(popularity) ? popularity : 0; // Garantir que popularidade seja um número
-
-// Definir os campos de saída
-var cleaned_song_name = song_name_regex;
-var cleaned_duration = cleaned_duration;
-var cleaned_popularity = cleaned_popularity;</jsScript_script>
+// Constrói o URL de busca do Spotify (Endpoint /search, type=artist)
+var search_url = "https://api.spotify.com/v1/search?q=" + encodeURIComponent(nome_artista) + "&amp;type=artist&amp;limit=1"; 
+var JOIN_KEY = 1;</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
       <field>
-        <name>formatDuration</name>
-        <rename>formatDuration</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>cleaned_song_name</name>
-        <rename>cleaned_song_name</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>cleaned_duration</name>
-        <rename>cleaned_duration</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>cleaned_popularity</name>
-        <rename>cleaned_popularity</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>cleaned_album_name</name>
-        <rename>cleaned_album_name</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1008</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Modified JavaScript value 3 2</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>// 1. Definições da API
-var API_BASE_URL = "https://api.spotify.com/v1/playlists/";
-
-// 2. Encontrar o ID da Playlist
-// A substring que procuramos é "/playlist/"
-var start_index = Playlist_URL.indexOf("/playlist/") + 10;
-
-// O ID tem 22 caracteres (padrão Spotify)
-var playlist_ID = Playlist_URL.substring(start_index, start_index + 22);
-
-// Se o URL tiver "?", remove o que está a seguir
-var end_index = playlist_ID.indexOf("?");
-if (end_index != -1) {
-    playlist_ID = playlist_ID.substring(0, end_index);
-}
-
-// 3. Construir o Endpoint Final
-var ENDPOINT_FINAL = API_BASE_URL + playlist_ID
-
-var JOIN_KEY = 1
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>ENDPOINT_FINAL</name>
-        <rename>ENDPOINT_FINAL</rename>
+        <name>search_url</name>
+        <rename>search_url</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1161,16 +1012,16 @@ var JOIN_KEY = 1
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>208</yloc>
+      <xloc>384</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Modified JavaScript value 4</name>
+    <name>Modified JavaScript value 2</name>
     <type>ScriptValueMod</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -1183,15 +1034,14 @@ var JOIN_KEY = 1
       <jsScript>
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var auth_header = 'Bearer ' + spotify_token;
-
-var JOIN_KEY = 1</jsScript_script>
+        <jsScript_script>var bearer_token = "Bearer " + spotify_token;
+var JOIN_KEY = 1;</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
       <field>
-        <name>auth_header</name>
-        <rename>auth_header</rename>
+        <name>bearer_token</name>
+        <rename>bearer_token</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1215,13 +1065,61 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>336</yloc>
+      <xloc>272</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>REST client 2 2</name>
+    <name>Modified JavaScript value 3</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>if (artist_genres == null || artist_genres.trim() == "") {
+  artist_genres = "unknown";
+}
+
+var not_null_artist_genres = artist_genres;</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>not_null_artist_genres</name>
+        <rename>not_null_artist_genres</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1024</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>REST client</name>
     <type>Rest</type>
     <description/>
     <distribute>Y</distribute>
@@ -1237,7 +1135,7 @@ var JOIN_KEY = 1</jsScript_script>
     <urlInField>Y</urlInField>
     <dynamicMethod>N</dynamicMethod>
     <methodFieldName/>
-    <urlField>ENDPOINT_FINAL</urlField>
+    <urlField>search_url</urlField>
     <bodyField/>
     <httpLogin/>
     <httpPassword>Encrypted </httpPassword>
@@ -1248,7 +1146,7 @@ var JOIN_KEY = 1</jsScript_script>
     <trustStorePassword>Encrypted </trustStorePassword>
     <headers>
       <header>
-        <field>auth_header</field>
+        <field>bearer_token</field>
         <name>Authorization</name>
       </header>
     </headers>
@@ -1271,52 +1169,13 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>208</yloc>
+      <xloc>704</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Replace in string 2</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>song_name</in_stream_name>
-        <out_stream_name>song_name_regex</out_stream_name>
-        <use_regex>yes</use_regex>
-        <replace_string>\([^\)]*feat\.[^\)]*\)|\[[^\]]*feat\.[^\]]*\]</replace_string>
-        <replace_by_string/>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-        <is_unicode>no</is_unicode>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>880</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values 2 2</name>
+    <name>Select values</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1328,7 +1187,7 @@ var JOIN_KEY = 1</jsScript_script>
     </partitioning>
     <fields>
       <field>
-        <name>auth_header</name>
+        <name>bearer_token</name>
       </field>
       <field>
         <name>JOIN_KEY</name>
@@ -1344,13 +1203,13 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>336</yloc>
+      <xloc>608</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 3</name>
+    <name>Select values 2</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1362,28 +1221,24 @@ var JOIN_KEY = 1</jsScript_script>
     </partitioning>
     <fields>
       <field>
-        <name>track_id</name>
-        <rename>Id_Faixa</rename>
+        <name>artist_name</name>
+        <rename>Nome_Artista</rename>
       </field>
       <field>
-        <name>cleaned_artists</name>
-        <rename>Nomes_Artistas</rename>
+        <name>artist_followers</name>
+        <rename>Seguidores_Artista</rename>
       </field>
       <field>
-        <name>cleaned_song_name</name>
-        <rename>Nome_Musica</rename>
+        <name>artist_popularity</name>
+        <rename>Popularidade_Artista (0 -100)</rename>
       </field>
       <field>
-        <name>cleaned_duration</name>
-        <rename>Duração (min)</rename>
+        <name>cleaned_genres</name>
+        <rename>Generos_Musicais_Artista</rename>
       </field>
       <field>
-        <name>cleaned_popularity</name>
-        <rename>Popularidade (0-100)</rename>
-      </field>
-      <field>
-        <name>album_name</name>
-        <rename>Nome_Album</rename>
+        <name>artist_id</name>
+        <rename>Id_Artista</rename>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -1396,16 +1251,16 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1216</xloc>
-      <yloc>208</yloc>
+      <xloc>1264</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort rows 2</name>
+    <name>Sort rows</name>
     <type>SortRows</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -1421,7 +1276,7 @@ var JOIN_KEY = 1</jsScript_script>
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>Nome_Musica</name>
+        <name>artist_name</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1438,13 +1293,13 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1328</xloc>
-      <yloc>208</yloc>
+      <xloc>144</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Stream lookup</name>
+    <name>Stream lookup 2</name>
     <type>StreamLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1454,7 +1309,7 @@ var JOIN_KEY = 1</jsScript_script>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <from>Select values 2 2</from>
+    <from>Select values</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>
@@ -1465,8 +1320,8 @@ var JOIN_KEY = 1</jsScript_script>
         <field>JOIN_KEY</field>
       </key>
       <value>
-        <name>auth_header</name>
-        <rename>auth_header</rename>
+        <name>bearer_token</name>
+        <rename>bearer_token</rename>
         <default/>
         <type>None</type>
       </value>
@@ -1480,13 +1335,13 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>208</yloc>
+      <xloc>608</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Table output 2</name>
+    <name>Table output</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1498,7 +1353,7 @@ var JOIN_KEY = 1</jsScript_script>
     </partitioning>
     <connection>SPOTIFY_DB_LOCAL</connection>
     <schema>dbo</schema>
-    <table>Tabela_Dados_Playlist</table>
+    <table>Tabela_Artistas</table>
     <commit>1</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -1515,28 +1370,24 @@ var JOIN_KEY = 1</jsScript_script>
     <return_field/>
     <fields>
       <field>
-        <column_name>ID_Musica</column_name>
-        <stream_name>Id_Faixa</stream_name>
-      </field>
-      <field>
-        <column_name>Nome_Musica</column_name>
-        <stream_name>Nome_Musica</stream_name>
-      </field>
-      <field>
         <column_name>Nome_Artista</column_name>
-        <stream_name>Nomes_Artistas</stream_name>
+        <stream_name>Nome_Artista</stream_name>
       </field>
       <field>
-        <column_name>Duracao_Min</column_name>
-        <stream_name>Duração (min)</stream_name>
+        <column_name>ID_Artista</column_name>
+        <stream_name>Id_Artista</stream_name>
       </field>
       <field>
-        <column_name>Popularidade_Musica</column_name>
-        <stream_name>Popularidade (0-100)</stream_name>
+        <column_name>Seguidores</column_name>
+        <stream_name>Seguidores_Artista</stream_name>
       </field>
       <field>
-        <column_name>Nome_Album</column_name>
-        <stream_name>Nome_Album</stream_name>
+        <column_name>Popularidade_Artista</column_name>
+        <stream_name>Popularidade_Artista (0 -100)</stream_name>
+      </field>
+      <field>
+        <column_name>Generos_Musicais</column_name>
+        <stream_name>Generos_Musicais_Artista</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1548,14 +1399,14 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1440</xloc>
-      <yloc>208</yloc>
+      <xloc>1456</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Text file output 2</name>
-    <type>TextFileOutput</type>
+    <name>Unique rows</name>
+    <type>Unique</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1564,48 +1415,14 @@ var JOIN_KEY = 1</jsScript_script>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>${Internal.Entry.Current.Directory}/data/output/nomes_artistas</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>csv</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery/>
-    </file>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
     <fields>
       <field>
         <name>artist_name</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
+        <case_insensitive>N</case_insensitive>
       </field>
     </fields>
     <attributes/>
@@ -1617,8 +1434,8 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
-      <yloc>80</yloc>
+      <xloc>240</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1638,7 +1455,7 @@ var JOIN_KEY = 1</jsScript_script>
     <xml_main_element>Rows</xml_main_element>
     <xml_repeat_element>Row</xml_repeat_element>
     <file>
-      <name>${Internal.Entry.Current.Directory}/data/output/dados_playlist.xml</name>
+      <name>${Internal.Entry.Current.Directory}/../data/output/dados_artistas.xml</name>
       <extention>xml</extention>
       <servlet_output>N</servlet_output>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
@@ -1653,6 +1470,71 @@ var JOIN_KEY = 1</jsScript_script>
       <splitevery>0</splitevery>
     </file>
     <fields>
+      <field>
+        <content_type>Element</content_type>
+        <name>Nome_Artista</name>
+        <element/>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>23</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <content_type>Element</content_type>
+        <name>Seguidores_Artista</name>
+        <element/>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <content_type>Element</content_type>
+        <name>Popularidade_Artista (0 -100)</name>
+        <element/>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <content_type>Element</content_type>
+        <name>Generos_Musicais_Artista</name>
+        <element/>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <content_type>Element</content_type>
+        <name>Id_Artista</name>
+        <element/>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1663,8 +1545,8 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1328</xloc>
-      <yloc>320</yloc>
+      <xloc>1360</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

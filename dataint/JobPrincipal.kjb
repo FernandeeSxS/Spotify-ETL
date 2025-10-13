@@ -11,7 +11,12 @@
   <modified_user>-</modified_user>
   <modified_date>2025/10/07 11:56:38.655</modified_date>
   <parameters>
-    </parameters>
+    <parameter>
+      <name>DIRETORIO_INPUT_OUTPUT</name>
+      <default_value>${Internal.Job.Filename.Directory}</default_value>
+      <description/>
+    </parameter>
+  </parameters>
   <slaveservers>
     </slaveservers>
   <job-log-table>
@@ -305,7 +310,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
+      <xloc>224</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -316,7 +321,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/dataint/Spotify_Etl_Backup1.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}/Spotify_Etl_Backup1.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -344,7 +349,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>352</xloc>
+      <xloc>336</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -433,7 +438,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/dataint/Join .ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}/Join .ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -473,7 +478,7 @@
       <filename/>
       <fields>
         <field>
-          <name>${Internal.Entry.Current.Directory}/data/output/nomes_artistas.csv</name>
+          <name>${Internal.Entry.Current.Directory}/../data/output/nomes_artistas.csv</name>
         </field>
       </fields>
       <parallel>N</parallel>
@@ -530,13 +535,13 @@
       <filename/>
       <fields>
         <field>
-          <name>${Internal.Entry.Current.Directory}/data/input/playlist_link.txt</name>
+          <name>${Internal.Entry.Current.Directory}/../data/input/playlist_link.txt</name>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
+      <xloc>448</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -548,7 +553,7 @@
       <filename/>
       <fields>
         <field>
-          <name>${Internal.Entry.Current.Directory}/data/input/album_link.txt</name>
+          <name>${Internal.Entry.Current.Directory}/../data/input/album_link.txt</name>
         </field>
       </fields>
       <parallel>N</parallel>
