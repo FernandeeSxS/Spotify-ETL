@@ -15,17 +15,83 @@ Este projeto implementa um *pipeline* ETL (Extração, Transformação e Carga) 
 
 ## 📂 Descrição dos Ficheiros
 
-O projeto está organizado com o seguinte propósito:
+A estrutura do projeto está organizada em várias pastas, cada uma com uma função específica dentro do processo ETL desenvolvido no **Pentaho Data Integration (Kettle)**.
 
-| Ficheiro / Pasta | Tipo | Descrição |
+---
+
+### 1. Pasta `dataint/` (Lógica Principal - Pentaho Kettle)
+
+Esta pasta contém os **Jobs** e **Transformações** do Pentaho, que implementam a lógica principal de Extração, Transformação e Carga (ETL).
+
+| Ficheiro | Tipo | Função |
 | :--- | :--- | :--- |
-| **`JobPrincipal.kjb`** | **Job (PDI)** | O *Job* principal. Orquestra o *pipeline*, começando pela obtenção do Token de Acesso do Spotify, passando pela extração, transformação e carregamento dos dados. |
-| **`ObterToken.ktr`** | **Transformação (PDI)** | Obtém a chave de autenticação do Spotify num Token de Acesso válido, guardando-o como a **variável** `SPOTIFY_TOKEN`. |
-| **`Get Request Playlist.ktr`** | **Transformação (PDI)** | Utiliza o **`SPOTIFY_TOKEN`** para fazer a chamada à API do Spotify, lendo o *link* da playlist a partir do ficheiro **`playlist_link.txt`** , e processa a resposta JSON para extrair detalhes das faixas. |
-| **`Get Request Artista.ktr`** | **Transformação (PDI)** | Utiliza o **`SPOTIFY_TOKEN`** para fazer a chamada à API do Spotify, lendo os *nomes dos artistas* da playlist a partir do ficheiro **`nomes_artistas.csv`** , e processa a resposta JSON para extrair detalhes dos artistas. |
-| **`Join.ktr`** | **Transformação (PDI)** | Combina dados de faixas e artistas utilizando o *step* **Merge Join**. Puxa dados de duas tabelas de *input* da base de dados (`Tabela_Dados_Playlist` e `Tabela_Artista`) e junta-os para criar um *dataset* unificado pronto para a análise. |
-| **`Get Album.ktr`** | **Transformação (PDI)** | Utiliza o **`SPOTIFY_TOKEN`** para fazer a chamada à API do Spotify, lendo o *link* do álbum a partir do ficheiro **`album_link.txt`** , e processa a resposta JSON para extrair detalhes das faixas. |
-| **`Dashboard BI.pbix`** | **Dashboard (PowerBI)** | Demonstra, através do acesso à base de dados, a correlação entre os dados das tabelas **`Tabela_Dados_Playlist`** e **`Tabela_Artistas`** através de gráficos de barras e de dispersão.
+| **`JobPrincipal.kjb`** | **Job (PDI)** | É o *Job* principal do projeto. Orquestra todo o processo ETL, desde a autenticação com a API do Spotify até ao carregamento final dos dados na base de dados. |
+| **`ObterToken.ktr`** | **Transformação (PDI)** | Obtém o Token de Acesso do Spotify e armazena-o na variável `SPOTIFY_TOKEN`. |
+| **`Get Request Playlist.ktr`** | **Transformação (PDI)** | Lê o ficheiro `playlist_link.txt` e, utilizando o `SPOTIFY_TOKEN`, faz a requisição à API do Spotify para extrair dados das faixas da playlist. |
+| **`Get Request Artista.ktr`** | **Transformação (PDI)** | Faz a chamada à API do Spotify para obter dados detalhados dos artistas presentes na playlist. |
+| **`Get Album.ktr`** | **Transformação (PDI)** | Extrai detalhes de álbuns a partir de links definidos no ficheiro `album_link.txt`. |
+| **`Join.ktr`** | **Transformação (PDI)** | Combina dados de playlists e artistas através do *step* **Merge Join**, criando um dataset unificado. |
+
+---
+
+### 2. Pasta `src/` (Código Auxiliar e Estrutura SQL)
+
+Esta pasta contém os **Scripts SQL** utilizados para criar as tabelas da base de dados e o **Código Python Auxiliar** usado em operações complementares, como autenticação e codificação.
+
+| Ficheiro | Tipo | Função |
+| :--- | :--- | :--- |
+| **`TabelaDadosPlaylist.sql`** | **Script SQL** | Define a estrutura da tabela principal de dados das playlists. |
+| **`TabelaArtistas.sql`** | **Script SQL** | Cria a tabela com informações detalhadas dos artistas. |
+| **`TabelaAnaliseCompleta.sql`** | **Script SQL** | Junta dados de músicas e artistas da playlist para análises no Power BI. |
+| **`TabelaMusicasAlbum.sql`** | **Script SQL** | Define a estrutura para armazenar as músicas associadas a cada álbum. |
+| **`spotify_auth_encoder.py`** | **Script Python** | Script auxiliar que codifica as credenciais (Client ID e Secret) em Base64 e escreve automaticamente o resultado no ficheiro `credentials.txt`. Necessário para o processo de autenticação com a API do Spotify. |
+
+---
+
+### 3. Pasta `data/` (Gestão de Dados)
+
+Esta pasta centraliza todos os **ficheiros de dados de entrada e saída** utilizados e gerados pelo pipeline ETL.
+
+#### 📥 `data/input/` — Ficheiros de Configuração e Links
+
+Contém os ficheiros de texto necessários para parametrizar a extração de dados.
+
+| Ficheiro | Função |
+| :--- | :--- |
+| **`playlist_link.txt`** | Contém o link completo da *playlist* a processar pela pipeline. |
+| **`album_link.txt`** | Contém o link do *álbum* a ser processado. |
+| **`credentials.txt`** | Ficheiro que armazena as credenciais codificadas em Base64 (`Client ID` e `Client Secret`). |
+
+#### 📤 `data/output/` — Resultados Finais e Intermédios
+
+Contém os ficheiros de saída gerados após a execução do processo ETL. Os dados são exportados tanto em formato de texto como XML.
+
+| Ficheiro | Função |
+| :--- | :--- |
+| **`nomes_artistas.csv`** | Saída final do conjunto de artistas presentes na playlist. |
+| **`dados_playlist.xml`** | Saída final das playlists em formato XML. |
+| **`dados_artistas.xml`** | Saída dos artistas em formato XML. |
+| **`dados_album.xml`** | Saída dos dados do álbum em formato XML. |
+
+---
+
+### 4. Pasta `doc/` (Documentação)
+
+Contém a documentação e relatórios do projeto.
+
+| Ficheiro | Função |
+| :--- | :--- |
+| **`README.md`** | Documento explicativo com as instruções e descrição geral do projeto. |
+| **`27960_doc.pdf`** | Documento final com a descrição técnica e análise do trabalho realizado. |
+
+---
+
+### 5. Outros Ficheiros
+
+| Ficheiro | Função |
+| :--- | :--- |
+| **`.gitignore`** | Define os ficheiros e pastas a serem ignorados pelo Git (por exemplo, credenciais, logs e ficheiros temporários). |
+
 
 ---
 
@@ -60,7 +126,43 @@ O *Job* espera encontrar a *URL* da *playlist* que deseja processar:
 1.  Navegue para a pasta `data/input/` dentro do repositório.
 2.  Certifique-se de que os ficheiros **`playlist_link.txt`** e **`album_link.txt`** existem e contêm a *URL* do recurso do Spotify na primeira linha.
 
-### 4. Execução do Pipeline
+### 4. Como Obter Acesso
+
+Para garantir o sucesso da extração de dados da API do Spotify, siga os seguintes passos de configuração e autenticação:
+
+### **Passo 1: Obter as Credenciais da API**
+
+1. Crie uma conta em [Spotify for Developers](https://developer.spotify.com/dashboard/).  
+2. Crie uma nova aplicação para obter o seu **Client ID** e **Client Secret**.
+
+### **Passo 2: Configurar o Ficheiro `credentials.txt`**
+
+A *transformação* lê a chave de autenticação a partir do ficheiro `data/input/credentials.txt`.  
+Existem duas formas de inserir as credenciais necessárias:
+
+#### 🔹 Opção A: Executar o Script de Auxílio (Recomendado)
+
+Esta é a forma mais simples, pois o script faz a codificação Base64 e escreve no ficheiro automaticamente.
+
+1. Abra a consola (CMD/Terminal) na pasta  
+   `[O seu workspace]\tp01-27960\src\`.  
+2. Execute o ficheiro `spotify_auth_encoder.py`, passando o seu **Client ID** e **Client Secret** como argumentos:
+
+   ```bash
+   python spotify_auth_encoder.py <Client ID> <Client Secret>
+
+#### 🔹 Opção B: Inserção Manual
+
+Se preferir inserir manualmente, edite o ficheiro `data/input/credentials.txt` e substitua os *placeholders*.
+
+1. Codifique a string `Client ID:Client Secret` em Base64 externamente (pode usar um site online).  
+2. Edite o ficheiro e insira a chave de autorização, seguindo o formato abaixo:
+
+   ```txt
+   [SUA_CHAVE_BASE64]
+
+
+### 5. Execução do Pipeline
 
 A execução deve ser iniciada a partir do ficheiro de *Job* principal:
 
