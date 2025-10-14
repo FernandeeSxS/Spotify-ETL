@@ -157,11 +157,7 @@ Esta é a forma mais simples, pois o script faz a codificação Base64 e escreve
 Se preferir inserir manualmente, edite o ficheiro `data/input/credentials.txt` e substitua os *placeholders*.
 
 1. Codifique a string `Client ID:Client Secret` em Base64 externamente (pode usar um site online).  
-2. Edite o ficheiro e insira a chave de autorização, seguindo o formato abaixo:
-
-   ```txt
-   [SUA_CHAVE_BASE64]
-
+2. Edite o ficheiro e insira a chave de autorização.
 
 ### 5. Execução do Pipeline
 
