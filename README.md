@@ -1,6 +1,6 @@
 # Projecto de Integração de Sistemas de Informação: ETL Spotify
 
-Este projeto implementa um *pipeline* ETL (Extração, Transformação e Carga) para obter dados de faixas, artistas e álbuns da API do Spotify e carregar o resultado numa base de dados SQL para análise subsequente no Power BI.
+Este projeto implementa um *pipeline* ETL (Extração, Transformação e Carga) para obter dados de músicas, artistas e álbuns da API do Spotify e carregar o resultado numa base de dados SQL para análise subsequente no Power BI.
 
 ---
 
@@ -27,7 +27,7 @@ Esta pasta contém os **Jobs** e **Transformações** do Pentaho, que implementa
 | :--- | :--- | :--- |
 | **`JobPrincipal.kjb`** | **Job (PDI)** | É o *Job* principal do projeto. Orquestra todo o processo ETL, desde a autenticação com a API do Spotify até ao carregamento final dos dados na base de dados. |
 | **`ObterToken.ktr`** | **Transformação (PDI)** | Obtém o Token de Acesso do Spotify e armazena-o na variável `SPOTIFY_TOKEN`. |
-| **`Get Request Playlist.ktr`** | **Transformação (PDI)** | Lê o ficheiro `playlist_link.txt` e, utilizando o `SPOTIFY_TOKEN`, faz a requisição à API do Spotify para extrair dados das faixas da playlist. |
+| **`Get Request Playlist.ktr`** | **Transformação (PDI)** | Lê o ficheiro `playlist_link.txt` e, utilizando o `SPOTIFY_TOKEN`, faz a requisição à API do Spotify para extrair dados das músicas da playlist. |
 | **`Get Request Artista.ktr`** | **Transformação (PDI)** | Faz a chamada à API do Spotify para obter dados detalhados dos artistas presentes na playlist. |
 | **`Get Album.ktr`** | **Transformação (PDI)** | Extrai detalhes de álbuns a partir de links definidos no ficheiro `album_link.txt`. |
 | **`Join.ktr`** | **Transformação (PDI)** | Combina dados de playlists e artistas através do *step* **Merge Join**, criando um dataset unificado. |
@@ -107,6 +107,7 @@ Certifique-se de que tem as seguintes ferramentas instaladas e configuradas:
 | :--- | :--- | :--- |
 | **Pentaho Data Integration (PDI)** | Motor de ETL (Spoon) | Versão 10.2.0.0-222 ou superior. |
 | **Base de Dados SQL** | Destino dos Dados | Configurar uma conexão chamada **`SPOTIFY_DB_LOCAL`** no PDI. |
+| **Spotify Web API** | Fonte de Dados (Extração) | Utilizada para aceder programaticamente aos dados de músicas, artistas e álbuns do Spotify. |
 
 ### 2. Configuração da Base de Dados
 
