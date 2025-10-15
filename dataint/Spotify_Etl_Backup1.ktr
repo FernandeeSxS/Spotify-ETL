@@ -448,24 +448,24 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Contrução dos campos Body e Header</from>
-      <to>Seleção dos campos</to>
+      <from>Contrução Campos Body e Header</from>
+      <to>Seleção Campos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Ler Ficheiro de Credenciais</from>
-      <to>Contrução dos campos Body e Header</to>
+      <from>Ler Credenciais</from>
+      <to>Contrução Campos Body e Header</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Seleção dos campos</from>
+      <from>Seleção Campos</from>
       <to>Solicitar Token Spotify</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Ler Ficheiro de Credenciais</name>
-    <type>CsvInput</type>
+    <name>Armazenar Token Spotify</name>
+    <type>SetVariable</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -474,31 +474,80 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}/../data/input/credentials.txt</filename>
-    <filename_field/>
-    <rownum_field/>
-    <include_filename>N</include_filename>
-    <separator>\t</separator>
-    <enclosure/>
-    <header>N</header>
-    <buffer_size>50000</buffer_size>
-    <lazy_conversion>Y</lazy_conversion>
-    <add_filename_result>N</add_filename_result>
-    <parallel>N</parallel>
-    <newline_possible>N</newline_possible>
-    <format>mixed</format>
-    <encoding/>
     <fields>
       <field>
-        <name>credentials</name>
+        <field_name>access_token</field_name>
+        <variable_name>SPOTIFY_TOKEN</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value/>
+      </field>
+    </fields>
+    <use_formatting>Y</use_formatting>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1168</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Contrução Campos Body e Header</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>// 1. O campo Authorization (o 'credentials' é lido do ficheiro)
+var authorization = "Basic " + credentials;
+
+// 2. O campo Body (o valor tem de ser uma string)
+var body = "grant_type=client_credentials";
+
+// 3. O campo Content-Type (usamos 'contentType' sem o hífen para ser válido em JS)
+var contentType = "application/x-www-form-urlencoded";</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>authorization</name>
+        <rename>authorization</rename>
         <type>String</type>
-        <format/>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>88</length>
+        <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>body</name>
+        <rename>body</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>contentType</name>
+        <rename>contentType</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
       </field>
     </fields>
     <attributes/>
@@ -510,7 +559,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
+      <xloc>512</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
@@ -607,14 +656,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1024</xloc>
+      <xloc>1008</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Contrução dos campos Body e Header</name>
-    <type>ScriptValueMod</type>
+    <name>Ler Credenciais</name>
+    <type>CsvInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -623,46 +672,31 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>// 1. O campo Authorization (o 'credentials' é lido do ficheiro)
-var authorization = "Basic " + credentials;
-
-// 2. O campo Body (o valor tem de ser uma string)
-var body = "grant_type=client_credentials";
-
-// 3. O campo Content-Type (usamos 'contentType' sem o hífen para ser válido em JS)
-var contentType = "application/x-www-form-urlencoded";</jsScript_script>
-      </jsScript>
-    </jsScripts>
+    <filename>${Internal.Entry.Current.Directory}/../data/input/credentials.txt</filename>
+    <filename_field/>
+    <rownum_field/>
+    <include_filename>N</include_filename>
+    <separator>\t</separator>
+    <enclosure/>
+    <header>N</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <format>mixed</format>
+    <encoding/>
     <fields>
       <field>
-        <name>authorization</name>
-        <rename>authorization</rename>
+        <name>credentials</name>
         <type>String</type>
-        <length>-1</length>
+        <format/>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>88</length>
         <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>body</name>
-        <rename>body</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>contentType</name>
-        <rename>contentType</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
+        <trim_type>none</trim_type>
       </field>
     </fields>
     <attributes/>
@@ -674,7 +708,47 @@ var contentType = "application/x-www-form-urlencoded";</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
+      <xloc>304</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Seleção Campos</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>authorization</name>
+        <rename/>
+      </field>
+      <field>
+        <name>body</name>
+        <rename/>
+      </field>
+      <field>
+        <name>contentType</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>704</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
@@ -734,81 +808,7 @@ var contentType = "application/x-www-form-urlencoded";</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>880</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Seleção dos campos</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>authorization</name>
-        <rename/>
-      </field>
-      <field>
-        <name>body</name>
-        <rename/>
-      </field>
-      <field>
-        <name>contentType</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>704</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Armazenar Token Spotify</name>
-    <type>SetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <field_name>access_token</field_name>
-        <variable_name>SPOTIFY_TOKEN</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-      </field>
-    </fields>
-    <use_formatting>Y</use_formatting>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1184</xloc>
+      <xloc>848</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
