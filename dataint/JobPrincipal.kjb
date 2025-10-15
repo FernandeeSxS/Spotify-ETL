@@ -427,7 +427,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>688</xloc>
+      <xloc>720</xloc>
       <yloc>240</yloc>
       <attributes_kjc/>
     </entry>
@@ -466,12 +466,12 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>800</xloc>
+      <xloc>832</xloc>
       <yloc>240</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Checks if files exist</name>
+      <name>Verificar nomes_artistas</name>
       <description/>
       <type>FILES_EXIST</type>
       <attributes/>
@@ -484,7 +484,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>560</xloc>
+      <xloc>592</xloc>
       <yloc>240</yloc>
       <attributes_kjc/>
     </entry>
@@ -523,12 +523,12 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1024</xloc>
+      <xloc>1056</xloc>
       <yloc>240</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Checks if files exist 2</name>
+      <name>Verificar playlist_link</name>
       <description/>
       <type>FILES_EXIST</type>
       <attributes/>
@@ -546,7 +546,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Checks if files exist 3</name>
+      <name>Verificar album_link</name>
       <description/>
       <type>FILES_EXIST</type>
       <attributes/>
@@ -559,7 +559,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>912</xloc>
+      <xloc>944</xloc>
       <yloc>240</yloc>
       <attributes_kjc/>
     </entry>
@@ -585,7 +585,7 @@
     </hop>
     <hop>
       <from>GetRequestPlaylist</from>
-      <to>Checks if files exist</to>
+      <to>Verificar nomes_artistas</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -593,7 +593,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Checks if files exist</from>
+      <from>Verificar nomes_artistas</from>
       <to>Get Request Artistas</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -603,7 +603,7 @@
     </hop>
     <hop>
       <from>ObterToken</from>
-      <to>Checks if files exist 2</to>
+      <to>Verificar playlist_link</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -611,7 +611,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Checks if files exist 2</from>
+      <from>Verificar playlist_link</from>
       <to>GetRequestPlaylist</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -621,7 +621,7 @@
     </hop>
     <hop>
       <from>Join</from>
-      <to>Checks if files exist 3</to>
+      <to>Verificar album_link</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -629,7 +629,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Checks if files exist 3</from>
+      <from>Verificar album_link</from>
       <to>Get Album</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>

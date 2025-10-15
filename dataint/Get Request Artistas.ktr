@@ -505,88 +505,88 @@
   </connection>
   <order>
     <hop>
-      <from>CSV file input</from>
-      <to>Sort rows</to>
+      <from>Ler Artistas</from>
+      <to>Ordenar Nome</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Group by</from>
-      <to>Select values 2</to>
+      <from>Agrupar Géneros</from>
+      <to>Renomear Campos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON input</from>
-      <to>JSON input 3</to>
+      <from>Extrair Artistas</from>
+      <to>Extrair Géneros</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON input 3</from>
-      <to>Modified JavaScript value 3</to>
+      <from>Extrair Géneros</from>
+      <to>Formatação Géneros</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modified JavaScript value</from>
+      <from>Construção Endpoint</from>
       <to>Stream lookup 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modified JavaScript value 2</from>
-      <to>Select values</to>
+      <from>Construção Autenticação</from>
+      <to>Seleção Campo Autenticação</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modified JavaScript value 3</from>
-      <to>Group by</to>
+      <from>Formatação Géneros</from>
+      <to>Agrupar Géneros</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>REST client</from>
-      <to>JSON input</to>
+      <from>Requisição Artistas</from>
+      <to>Extrair Artistas</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values</from>
+      <from>Seleção Campo Autenticação</from>
       <to>Stream lookup 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows</from>
-      <to>Unique rows</to>
+      <from>Ordenar Nome</from>
+      <to>Eliminar Duplicados</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Stream lookup 2</from>
-      <to>REST client</to>
+      <to>Requisição Artistas</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unique rows</from>
-      <to>Modified JavaScript value</to>
+      <from>Eliminar Duplicados</from>
+      <to>Construção Endpoint</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get variables</from>
-      <to>Modified JavaScript value 2</to>
+      <from>Obter Token Spotify</from>
+      <to>Construção Autenticação</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 2</from>
-      <to>Filter rows</to>
+      <from>Renomear Campos</from>
+      <to>Filtrar Nulos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows</from>
-      <to>Table output</to>
+      <from>Filtrar Nulos</from>
+      <to>Extrair Tabela Artistas</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows</from>
-      <to>XML output</to>
+      <from>Filtrar Nulos</from>
+      <to>Extrair Artistas XML</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>CSV file input</name>
+    <name>Ler Artistas</name>
     <type>CsvInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -638,7 +638,7 @@
     </GUI>
   </step>
   <step>
-    <name>Filter rows</name>
+    <name>Filtrar Nulos</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -667,13 +667,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1360</xloc>
+      <xloc>1328</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Get variables</name>
+    <name>Obter Token Spotify</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -712,7 +712,7 @@
     </GUI>
   </step>
   <step>
-    <name>Group by</name>
+    <name>Agrupar Géneros</name>
     <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
@@ -761,13 +761,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1152</xloc>
+      <xloc>1120</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>JSON input</name>
+    <name>Extrair Artistas</name>
     <type>JsonInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -890,7 +890,7 @@
     </GUI>
   </step>
   <step>
-    <name>JSON input 3</name>
+    <name>Extrair Géneros</name>
     <type>JsonInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -961,7 +961,7 @@
     </GUI>
   </step>
   <step>
-    <name>Modified JavaScript value</name>
+    <name>Construção Endpoint</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -1018,7 +1018,7 @@ var JOIN_KEY = 1;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>Modified JavaScript value 2</name>
+    <name>Construção Autenticação</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>N</distribute>
@@ -1071,7 +1071,7 @@ var JOIN_KEY = 1;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>Modified JavaScript value 3</name>
+    <name>Formatação Géneros</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -1113,13 +1113,13 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1024</xloc>
+      <xloc>1008</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>REST client</name>
+    <name>Requisição Artistas</name>
     <type>Rest</type>
     <description/>
     <distribute>Y</distribute>
@@ -1169,13 +1169,13 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
+      <xloc>672</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
+    <name>Seleção Campo Autenticação</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1188,9 +1188,11 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
     <fields>
       <field>
         <name>bearer_token</name>
+        <rename/>
       </field>
       <field>
         <name>JOIN_KEY</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -1203,13 +1205,13 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
+      <xloc>528</xloc>
       <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 2</name>
+    <name>Renomear Campos</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1251,13 +1253,13 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
+      <xloc>1232</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort rows</name>
+    <name>Ordenar Nome</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1309,7 +1311,7 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <from>Select values</from>
+    <from>Seleção Campo Autenticação</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>
@@ -1335,13 +1337,13 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
+      <xloc>528</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Table output</name>
+    <name>Extrair Tabela Artistas</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1399,13 +1401,13 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1456</xloc>
+      <xloc>1440</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Unique rows</name>
+    <name>Eliminar Duplicados</name>
     <type>Unique</type>
     <description/>
     <distribute>Y</distribute>
@@ -1434,13 +1436,13 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
+      <xloc>256</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>XML output</name>
+    <name>Extrair Artistas XML</name>
     <type>XMLOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1545,7 +1547,7 @@ var not_null_artist_genres = artist_genres;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1360</xloc>
+      <xloc>1328</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>

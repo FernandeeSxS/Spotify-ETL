@@ -505,68 +505,68 @@
   </connection>
   <order>
     <hop>
-      <from>Select values 3</from>
-      <to>Sort rows 2</to>
+      <from>Renomear Campos</from>
+      <to>Ordenar Nome Musica</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>REST client 2 2</from>
-      <to>JSON input 3 2</to>
+      <from>Requisição Album</from>
+      <to>Extrair Musicas Album</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modified JavaScript value 3 2</from>
+      <from>Contrução Endpoint</from>
       <to>Stream lookup</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Stream lookup</from>
-      <to>REST client 2 2</to>
+      <to>Requisição Album</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>CSV file input</from>
-      <to>Modified JavaScript value 3 2</to>
+      <from>Ler URL Album</from>
+      <to>Contrução Endpoint</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get variables 2 2</from>
-      <to>Modified JavaScript value 4 2</to>
+      <from>Obter Token Spotify</from>
+      <to>Construção Autenticação</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modified JavaScript value 4 2</from>
-      <to>Select values 2 2 3</to>
+      <from>Construção Autenticação</from>
+      <to>Seleção Campo Autenticação</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modified JavaScript value</from>
-      <to>Select values 3</to>
+      <from>Formatar Duração</from>
+      <to>Renomear Campos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON input 3 2</from>
-      <to>Modified JavaScript value</to>
+      <from>Extrair Musicas Album</from>
+      <to>Formatar Duração</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 2 2 3</from>
+      <from>Seleção Campo Autenticação</from>
       <to>Stream lookup</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows 2</from>
-      <to>Table output</to>
+      <from>Ordenar Nome Musica</from>
+      <to>Exportar Tabela Album</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows 2</from>
-      <to>XML output</to>
+      <from>Ordenar Nome Musica</from>
+      <to>Extrair Album XML</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>CSV file input</name>
+    <name>Ler URL Album</name>
     <type>CsvInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -618,7 +618,7 @@
     </GUI>
   </step>
   <step>
-    <name>Get variables 2 2</name>
+    <name>Obter Token Spotify</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -657,7 +657,7 @@
     </GUI>
   </step>
   <step>
-    <name>JSON input 3 2</name>
+    <name>Extrair Musicas Album</name>
     <type>JsonInput</type>
     <description/>
     <distribute>N</distribute>
@@ -766,13 +766,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
+      <xloc>624</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Modified JavaScript value</name>
+    <name>Formatar Duração</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -823,13 +823,13 @@ var cleaned_duration = formatDuration(duration_ms); // Formatar duração
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
+      <xloc>768</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Modified JavaScript value 3 2</name>
+    <name>Contrução Endpoint</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -903,7 +903,7 @@ var JOIN_KEY = 1;
     </GUI>
   </step>
   <step>
-    <name>Modified JavaScript value 4 2</name>
+    <name>Construção Autenticação</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -951,13 +951,13 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
+      <xloc>224</xloc>
       <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>REST client 2 2</name>
+    <name>Requisição Album</name>
     <type>Rest</type>
     <description/>
     <distribute>N</distribute>
@@ -1007,13 +1007,13 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
+      <xloc>496</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 2 2 3</name>
+    <name>Seleção Campo Autenticação</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1026,9 +1026,11 @@ var JOIN_KEY = 1</jsScript_script>
     <fields>
       <field>
         <name>auth_header</name>
+        <rename/>
       </field>
       <field>
         <name>JOIN_KEY</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -1041,13 +1043,13 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
+      <xloc>384</xloc>
       <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 3</name>
+    <name>Renomear Campos</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1085,13 +1087,13 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>848</xloc>
+      <xloc>880</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort rows 2</name>
+    <name>Ordenar Nome Musica</name>
     <type>SortRows</type>
     <description/>
     <distribute>N</distribute>
@@ -1127,7 +1129,7 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>944</xloc>
+      <xloc>1008</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1143,7 +1145,7 @@ var JOIN_KEY = 1</jsScript_script>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <from>Select values 2 2 3</from>
+    <from>Seleção Campo Autenticação</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>
@@ -1169,13 +1171,13 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
+      <xloc>384</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Table output</name>
+    <name>Exportar Tabela Album</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1229,13 +1231,13 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
+      <xloc>1152</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>XML output</name>
+    <name>Extrair Album XML</name>
     <type>XMLOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1327,7 +1329,7 @@ var JOIN_KEY = 1</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>944</xloc>
+      <xloc>1008</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
