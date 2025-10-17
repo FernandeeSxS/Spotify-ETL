@@ -514,13 +514,10 @@
       <jsScript>
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>// 1. O campo Authorization (o 'credentials' é lido do ficheiro)
-var authorization = "Basic " + credentials;
+        <jsScript_script>var authorization = "Basic " + credentials;
 
-// 2. O campo Body (o valor tem de ser uma string)
 var body = "grant_type=client_credentials";
 
-// 3. O campo Content-Type (usamos 'contentType' sem o hífen para ser válido em JS)
 var contentType = "application/x-www-form-urlencoded";</jsScript_script>
       </jsScript>
     </jsScripts>
@@ -727,15 +724,12 @@ var contentType = "application/x-www-form-urlencoded";</jsScript_script>
     <fields>
       <field>
         <name>authorization</name>
-        <rename/>
       </field>
       <field>
         <name>body</name>
-        <rename/>
       </field>
       <field>
         <name>contentType</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
